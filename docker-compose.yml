@@ -1,0 +1,8 @@
+rocrail:
+  image: rocrail:11903
+  ports:
+    - "8051:8051"
+  volumes:
+    - config:/config
+  environment:
+    - WORKDIR=/config

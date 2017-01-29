@@ -1,8 +1,18 @@
 NAME=		rocrail
-VERSION=	0.1-`git log --pretty=format:'%h' -n 1`
+VERSION=	11903
+DEBFILE=	rocrail-${VERSION}-linuxarmhf-wx3.0-armhf.deb
 
-all: Dockerfile
-	docker build -t ${NAME}:${VERSION} .
+all: ${DEBFILE} rocrail_deb Dockerfile
+	sudo docker build -t ${NAME}:${VERSION} .
+
+${DEBFILE}:
+	wget https://launchpad.net/rocrail/sunrise/2.0/+download/${DEBFILE}
+
+rocrail_deb:
+	dpkg -x ${DEBFILE} rocrail_deb
+
+compose:
+	docker-compose up
 
 run:
 	docker run -i -t ${NAME}:${VERSION} /bin/bash
