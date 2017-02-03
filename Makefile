@@ -12,6 +12,7 @@ rocrail_deb:
 	dpkg -x ${DEBFILE} rocrail_deb
 
 compose:
+	mkdir -p config/abox
 	docker-compose up
 
 run:
