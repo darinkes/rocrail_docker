@@ -37,6 +37,9 @@ the server with Rocview by entering the IP of your raspberry pi.
 The server config can be found in the config directory and is mounted
 in the docker container to /config.
 
+In my Train Setup I use an DCC232 Interface so ttyUSB0 is passed to the
+rocrail docker container.
+
 ## Docker on PI
 
 https://www.raspberrypi.org/blog/docker-comes-to-raspberry-pi/
