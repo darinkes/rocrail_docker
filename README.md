@@ -15,6 +15,12 @@ This Project allows you to build and run a docker container on your raspberry pi
 with the rocrail server. The image is based on the released deb Version from:
 https://launchpad.net/rocrail/sunrise/2.0
 
+## Docker Compose
+```bash
+$ sudo easy_install pip
+$ sudo pip2.7 install docker-compose
+```
+
 ## Build and run
 ```bash
 $ make
@@ -29,6 +35,7 @@ $ docker attach --sig-proxy=false rocraildocker_rocrail_1
 20171017.154537.697 r9999I cmdr7620 OModel   2465 informing 3 listeners of a system event name=sys val=stop...
 ....
 <CTRL-C>
+$ docker exec -i -t rocraildocker_rocrail_1 /bin/bash
 ```
 
 TCP-Port 8051 is forwarded to the docker container, so you can easily reach

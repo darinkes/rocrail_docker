@@ -1,10 +1,17 @@
-rocrail:
-  image: rocrail:12840
-  ports:
-    - "8051:8051"
-  volumes:
-    - config:/config
-    - /dev/ttyUSB0:/dev/ttyUSB0
-  environment:
-    - WORKDIR=/config
-  restart: always
+version: '3'
+
+services:
+  rocrail:
+    image: rocrail:12840
+    ports:
+      - "8051:8051"
+    volumes:
+      - ./config:/config
+    devices:
+      - /dev/ttyUSB0:/dev/ttyUSB0
+    environment:
+      - WORKDIR=/config
+    restart: always
+
+volumes:
+  config:
