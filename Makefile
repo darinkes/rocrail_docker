@@ -1,15 +1,18 @@
 NAME=		rocrail
-VERSION=	11903
+VERSION=	12840
 DEBFILE=	rocrail-${VERSION}-linuxarmhf-wx3.0-armhf.deb
+CODENAME!=	lsb_release -sc
+DEBFILE=	rocrail-${VERSION}-${CODENAME}-wx3.0-armhf.deb
 
-all: ${DEBFILE} rocrail_deb Dockerfile
-	sudo docker build -t ${NAME}:${VERSION} .
+all: ${DEBFILE} rocrail_${VERSION}_deb Dockerfile
+	sudo docker build --build-arg version=${VERSION} -t ${NAME}:${VERSION} .
 
 ${DEBFILE}:
 	wget https://launchpad.net/rocrail/sunrise/2.0/+download/${DEBFILE}
 
-rocrail_deb:
-	dpkg -x ${DEBFILE} rocrail_deb
+rocrail_${VERSION}_deb:
+	rm -rf rocrail_${VERSION}_deb
+	dpkg -x ${DEBFILE} rocrail_${VERSION}_deb
 
 compose:
 	mkdir -p config/abox
