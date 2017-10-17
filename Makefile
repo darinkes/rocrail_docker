@@ -15,5 +15,12 @@ compose:
 	mkdir -p config/abox
 	docker-compose up
 
+start:
+	sudo docker run --device=/dev/ttyUSB0 \
+	    -v $(shell pwd)/config:/config \
+	    -p 8051:8051 \
+	    --env "WORKDIR=/config" \
+	    ${NAME}:${VERSION}
+
 run:
 	docker run -i -t ${NAME}:${VERSION} /bin/bash
